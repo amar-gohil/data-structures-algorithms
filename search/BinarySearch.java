@@ -36,7 +36,12 @@ public class BinarySearch {
 		int firstIndex = 0;
 		int lastIndex = arr.length-1;
 		int index = binarySearch.binarySearchRecursive(arr,firstIndex,lastIndex,key);
-		System.out.println(index);
+		if(index > -1){
+			System.out.println(key +" is on index "+index);
+		}
+		else {
+			System.out.println(key +" is not found");
+		}
 		
 	}
 }
