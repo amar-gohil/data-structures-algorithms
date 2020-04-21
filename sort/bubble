@@ -16,9 +16,22 @@ public class Bubble {
 		}
 	}
 
+	static void recursiveBubbleSort(int arr[], int n) {
+		if (n == 1)
+			return;
+		for (int j = 0; j < n - 1; j++) {
+			if (arr[j] >= arr[j + 1]) {
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+		recursiveBubbleSort(arr, n - 1);
+	}
+
 	public static void main(String[] args) {
 		int arr[] = { 15, 16, 6, 8, 5 };
-		bubbleSort(arr, arr.length);
+		recursiveBubbleSort(arr, arr.length);
 		for (int i = 0; i < arr.length; i++)
 			System.out.print(arr[i] + ", ");
 	}
