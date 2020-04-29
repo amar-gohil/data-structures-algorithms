@@ -3,6 +3,7 @@ package linkedlist;
 public class AddUpdateDeleteSearchInLinkList {
 
 	static Node head;
+	static Node last;
 	static int size;
 
 	static class Node {
@@ -16,27 +17,26 @@ public class AddUpdateDeleteSearchInLinkList {
 	}
 
 	static void add(int value) {
-		Node node = new Node(value, null);
+		Node newNode = new Node(value, null);
 		if (head == null) {
-			head = node;
+			head = newNode;
+			last = newNode;
 		} else {
-			Node temp = head;
-			while (temp.next != null) {
-				temp = temp.next;
-			}
-			temp.next = node;
+			last.next = newNode;
+			last = newNode;
 		}
 		size++;
 	}
 
 	static void addAtFirst(int value) {
-		Node node = new Node(value, null);
+		Node newNode = new Node(value, null);
 		if (head == null) {
-			head = node;
+			head = newNode;
+			last = newNode;
 		} else {
-			node.next = head;
+			newNode.next = head;
 		}
-		head = node;
+		head = newNode;
 		size++;
 	}
 
