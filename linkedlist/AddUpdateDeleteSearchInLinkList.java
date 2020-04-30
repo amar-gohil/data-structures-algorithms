@@ -40,20 +40,6 @@ public class AddUpdateDeleteSearchInLinkList {
 		size++;
 	}
 
-	static void deleteFirst() {
-		head = head.next;
-	}
-
-	static void deleteLast() {
-		Node temp = head;
-		Node pre = null;
-		while (temp.next != null) {
-			pre = temp;
-			temp = temp.next;
-		}
-		pre.next = null;
-	}
-	
 	static void addAtPos(int pos, int value) {
 		if (pos > size) {
 			System.out.println("index out of bound");
@@ -75,6 +61,57 @@ public class AddUpdateDeleteSearchInLinkList {
 		}
 	}
 
+	static void deleteFirst() {
+		head = head.next;
+		size--;
+	}
+
+	static void deleteLast() {
+		Node temp = head;
+		Node pre = null;
+		while (temp.next != null) {
+			pre = temp;
+			temp = temp.next;
+		}
+		pre.next = null;
+		size--;
+	}
+
+	static void deleteByValue(int value) {
+		Node temp = head;
+		Node pre = null;
+		while (temp.value != value && temp.next != null) {
+			pre = temp;
+			temp = temp.next;
+		}
+		if (temp.value == value) {
+			Node n = temp.next;
+			pre.next = n;
+			size--;
+		}
+	}
+
+	static void deleteByPos(int pos) {
+		if (size > pos) {
+			if (pos == 0)
+				deleteFirst();
+			if (pos == size - 1)
+				deleteLast();
+			Node temp = head;
+			Node pre = null;
+			while (pos > 0 && temp.next != null) {
+				pre = temp;
+				temp = temp.next;
+				pos--;
+			}
+			Node n = temp.next;
+			pre.next = n;
+			size--;
+		} else {
+			System.out.println("index out of bound");
+		}
+	}
+
 	static void iterate() {
 		if (head != null) {
 			Node temp = head;
@@ -86,22 +123,36 @@ public class AddUpdateDeleteSearchInLinkList {
 		}
 	}
 
+	static int findByValue(int value) {
+		Node temp = head;
+		while (temp.next != null) {
+			if (temp.value == value)
+				return 1;
+			temp = temp.next;
+		}
+		return -1;
+	}
+
+	static int findByPos(int pos) {
+		if (size > pos) {
+			if (size - 1 == pos)
+				return last.value;
+			Node temp = head;
+			while (pos > 0) {
+				temp = temp.next;
+				pos--;
+			}
+			return temp.value;
+		}
+		return -1;
+	}
+
 	public static void main(String[] args) {
 		add(1);
 		add(2);
 		add(3);
 		add(4);
 		add(5);
-		iterate();
-		addAtFirst(0);
-		System.out.println();
-		iterate();
-		addAtPos(3, 11);
-		System.out.println();
-		iterate();
-		deleteFirst();
-		System.out.println();
-		deleteLast();
 		iterate();
 	}
 }
