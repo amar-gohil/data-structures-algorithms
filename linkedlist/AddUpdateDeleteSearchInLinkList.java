@@ -40,6 +40,20 @@ public class AddUpdateDeleteSearchInLinkList {
 		size++;
 	}
 
+	static void deleteFirst() {
+		head = head.next;
+	}
+
+	static void deleteLast() {
+		Node temp = head;
+		Node pre = null;
+		while (temp.next != null) {
+			pre = temp;
+			temp = temp.next;
+		}
+		pre.next = null;
+	}
+	
 	static void addAtPos(int pos, int value) {
 		if (pos > size) {
 			System.out.println("index out of bound");
@@ -84,6 +98,10 @@ public class AddUpdateDeleteSearchInLinkList {
 		iterate();
 		addAtPos(3, 11);
 		System.out.println();
+		iterate();
+		deleteFirst();
+		System.out.println();
+		deleteLast();
 		iterate();
 	}
 }
