@@ -147,6 +147,18 @@ public class AddUpdateDeleteSearchInLinkList {
 		return -1;
 	}
 
+	static int findSizeOfLinkedList() {
+		if (head == null)
+			return 0;
+		int count = 1;
+		Node temp = head;
+		while (temp.next != null) {
+			count++;
+			temp = temp.next;
+		}
+		return count;
+	}
+
 	public static void main(String[] args) {
 		add(1);
 		add(2);
