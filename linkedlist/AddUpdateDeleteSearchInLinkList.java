@@ -159,6 +159,12 @@ public class AddUpdateDeleteSearchInLinkList {
 		return count;
 	}
 
+	static int findSizeOfLinkedListRec(Node node) {
+		if (node == null)
+			return 0;
+		return 1 + findSizeOfLinkedListRec(node.next);
+	}
+
 	public static void main(String[] args) {
 		add(1);
 		add(2);
@@ -166,5 +172,7 @@ public class AddUpdateDeleteSearchInLinkList {
 		add(4);
 		add(5);
 		iterate();
+		System.out.println(findSizeOfLinkedList());
+		System.out.println(findSizeOfLinkedListRec(head));
 	}
 }
