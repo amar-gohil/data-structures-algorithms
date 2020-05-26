@@ -20,15 +20,6 @@ public class BTFromPreorderAndInorder {
 		}
 	}
 
-	static int findIndexInInorder(int in[], int f, int l, int v) {
-		int i;
-		for (i = f; i <= l; i++) {
-			if (in[i] == v)
-				return i;
-		}
-		return i;
-	}
-
 	static Node buildTree(int in[], int pre[], int f, int l, Map<Integer, Integer> map) {
 		if (f > l)
 			return null;
