@@ -1,5 +1,8 @@
 package tree;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BTFromPreorderAndInorder {
 
 	static Node root = null;
@@ -7,17 +10,17 @@ public class BTFromPreorderAndInorder {
 
 	static class Node {
 		Node left;
-		char value;
+		int value;
 		Node right;
 
-		Node(char value) {
+		Node(int value) {
 			left = null;
 			this.value = value;
 			right = null;
 		}
 	}
 
-	static int findIndexInInorder(char in[], int f, int l, int v) {
+	static int findIndexInInorder(int in[], int f, int l, int v) {
 		int i;
 		for (i = f; i <= l; i++) {
 			if (in[i] == v)
@@ -26,15 +29,15 @@ public class BTFromPreorderAndInorder {
 		return i;
 	}
 
-	static Node buildTree(char in[], char pre[], int f, int l) {
+	static Node buildTree(int in[], int pre[], int f, int l, Map<Integer, Integer> map) {
 		if (f > l)
 			return null;
 		Node tempNode = new Node(pre[preIndex++]);
 		if (f == l)
 			return tempNode;
-		int inIndex = findIndexInInorder(in, f, l, tempNode.value);
-		tempNode.left = buildTree(in, pre, f, inIndex - 1);
-		tempNode.right = buildTree(in, pre, inIndex + 1, l);
+		int inIndex = map.get(tempNode.value);
+		tempNode.left = buildTree(in, pre, f, inIndex - 1, map);
+		tempNode.right = buildTree(in, pre, inIndex + 1, l, map);
 		return tempNode;
 	}
 
@@ -47,10 +50,16 @@ public class BTFromPreorderAndInorder {
 	}
 
 	public static void main(String[] args) {
-		char in[] = new char[] { 'D', 'B', 'E', 'A', 'F', 'C' };
-		char pre[] = new char[] { 'A', 'B', 'D', 'E', 'C', 'F' };
+		int in[] = new int[] { 9, 8, 4, 2, 10, 5, 10, 1, 6, 3, 13, 12, 7 };
+		int pre[] = new int[] { 1, 2, 4, 8, 9, 5, 10, 10, 3, 6, 7, 12, 13 };
 		int len = in.length;
-		Node root = buildTree(in, pre, 0, len - 1);
+
+		Map<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < in.length; i++) {
+			map.put(in[i], i);
+		}
+
+		Node root = buildTree(in, pre, 0, len - 1, map);
 		inorder(root);
 	}
 }
