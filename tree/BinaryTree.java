@@ -37,14 +37,14 @@ public class BinaryTree {
 	static void inOrder(Node node) {
 		if (node != null) {
 			inOrder(node.left);
-			System.out.println(node.value);
+			System.out.print(node.value + " ");
 			inOrder(node.right);
 		}
 	}
 
 	static void preOrder(Node node) {
 		if (node != null) {
-			System.out.println(node.value);
+			System.out.print(node.value + " ");
 			inOrder(node.left);
 			inOrder(node.right);
 		}
@@ -54,7 +54,7 @@ public class BinaryTree {
 		if (node != null) {
 			inOrder(node.left);
 			inOrder(node.right);
-			System.out.println(node.value);
+			System.out.print(node.value + " ");
 		}
 	}
 
