@@ -2,7 +2,7 @@ package tree;
 
 import java.util.Arrays;
 
-public class BTFromPerorderAndPostorder {
+public class BTFromPreorderAndPostorder {
 	static Node root;
 	static int preindex = 0;
 
