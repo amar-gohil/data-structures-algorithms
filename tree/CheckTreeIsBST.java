@@ -50,6 +50,7 @@ public class CheckTreeIsBST {
 		}
 		return maxValue;
 	}
+
 	static int minValue(Node node) {
 		int minValue = node.value;
 		while (node.left != null) {
@@ -59,12 +60,30 @@ public class CheckTreeIsBST {
 		return minValue;
 	}
 
+	static boolean isBST3(Node node, int min, int max) {
+		if (node == null)
+			return true;
+		if (node.value < min || node.value > max)
+			return false;
+		return (isBST3(node.left, min, node.value - 1) && isBST3(node.right, node.value + 1, max));
+	}
+
+	static boolean isBST4(Node node, Node l, Node r) {
+		if (node == null)
+			return true;
+		if (l != null && node.value <= l.value)
+			return false;
+		if (r != null && node.value >= r.value)
+			return false;
+		return (isBST4(node.left, l, node) && isBST4(node.right, node, r));
+	}
+
 	public static void main(String[] args) {
 		root = new Node(3);
 		root.left = new Node(2);
 		root.left.left = new Node(1);
 		root.left.right = new Node(4);
 		root.right = new Node(5);
-		System.out.println(isBST2(root));
+		System.out.println(isBST4(root, null, null));
 	}
 }
