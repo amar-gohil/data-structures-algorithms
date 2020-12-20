@@ -39,6 +39,7 @@ public class FindInorderSuccessorInBinarySearchTree {
 		}
 	}
 
+	// 1st way
 	static Node findInOrderSuccessor(Node inputNode) {
 		if (inputNode == null)
 			return null;
@@ -57,6 +58,28 @@ public class FindInorderSuccessorInBinarySearchTree {
 		return parent;
 	}
 
+	// 2st way
+	static Node searchFromRootOrderSuccessor(Node inputNode) {
+		if (inputNode == null)
+			return null;
+		if (inputNode.right != null) {
+			return findLeft(inputNode.right);
+		}
+		Node suc = null;
+		Node root = head;
+		while (root != null) {
+			if (inputNode.data < root.data) {
+				suc = root;
+				root = root.left;
+			} else if (inputNode.data > root.data) {
+				root = root.right;
+			} else {
+				break;
+			}
+		}
+		return suc;
+	}
+	
 	static Node findLeft(Node left) {
 		if (left.left == null)
 			return left;
@@ -73,8 +96,8 @@ public class FindInorderSuccessorInBinarySearchTree {
 		head = insert(head, 14);
 		inOrder(head);
 		System.out.println();
-		System.out.println(head.left.data + " in oderd successor is " + findInOrderSuccessor(head.left).data);
-		System.out.println(head.left.right.left.data + " in oderd successor is " + findInOrderSuccessor(head.left.right.left).data);
-		System.out.println(head.left.right.right.data + " in oderd successor is " + findInOrderSuccessor(head.left.right.right).data);
+		System.out.println(head.left.data + " in oderd successor is " + searchFromRootOrderSuccessor(head.left).data);
+		System.out.println(head.left.right.left.data + " in oderd successor is " + searchFromRootOrderSuccessor(head.left.right.left).data);
+		System.out.println(head.left.right.right.data + " in oderd successor is " + searchFromRootOrderSuccessor(head.left.right.right).data);
 	}
 }
