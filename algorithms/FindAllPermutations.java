@@ -13,30 +13,26 @@ public class FindAllPermutations {
 	}
 
 	static private void backtrack(int[] nums, List<Integer> tmpList, List<List<Integer>> result) {
-		if(tmpList.size() == nums.length){
+		if (tmpList.size() == nums.length) {
 			result.add(new ArrayList<>(tmpList));
 			return;
 		}
-		for(int num:nums){
-			if(tmpList.contains(num))
+		for (int num : nums) {
+			if (tmpList.contains(num))
 				continue;
 			tmpList.add(num);
 			backtrack(nums, tmpList, result);
-			tmpList.remove(tmpList.size()-1);
+			tmpList.remove(tmpList.size() - 1);
 		}
 	}
-	static boolean v(String record){
-		return (record !=null && record.length() == 2000) ? true : false;		
-	}
-	
+
 	public static void main(String[] args) {
-		System.out.println(v("dd"));
-		List<List<Integer>> list = permutations(new int[]{1,2,3});
+		List<List<Integer>> list = permutations(new int[] { 1, 2, 3 });
 		list.forEach(e -> {
-		e.forEach(v ->{
-			System.out.print(v + ", ");
-		});
-		System.out.println();
+			e.forEach(v -> {
+				System.out.print(v + ", ");
+			});
+			System.out.println();
 		});
 	}
 }
