@@ -2,6 +2,7 @@ package graph;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class DFSForGraph {
 
@@ -20,6 +21,7 @@ public class DFSForGraph {
 		adj[v].add(w);
 	}
 
+	// DFS with Recursive approach
 	private static void DFSUtil(int root, boolean[] visited) {
 		visited[root] = true;
 		System.out.print(root + " ");
@@ -45,6 +47,38 @@ public class DFSForGraph {
 				DFSUtil(i, visited);
 	}
 
+	// DFS with stack DS
+	private void DFSWithStackUtil(int root, boolean[] visited) {
+		Stack<Integer> stack = new Stack<>();
+		stack.push(root);
+		while (!stack.isEmpty()) {
+			int s = stack.pop();
+			if (!visited[s]) {
+				System.out.print(s + " ");
+				visited[s] = true;
+			}
+			Iterator<Integer> it = adj[s].iterator();
+			while (it.hasNext()) {
+				int n = it.next();
+				if (!visited[n]) {
+					stack.add(n);
+				}
+			}
+		}
+	}
+
+	private void DFSWithStack(int root) {
+		boolean[] visited = new boolean[V];
+
+		// This will happen by handling a corner case.
+		// you can call direct DFSUtil(root, visited)
+		// All the vertices may not be reachable from a given vertex as in the
+		// case of a Disconnected graph
+		for (int i = 0; i < V; ++i)
+			if (visited[i] == false)
+				DFSWithStackUtil(i, visited);
+	}
+
 	public static void main(String[] args) {
 		DFSForGraph g = new DFSForGraph(4);
 		addEdge(0, 1);
@@ -56,5 +90,8 @@ public class DFSForGraph {
 
 		System.out.println("Following is deapth First Traversal " + "(starting from vertex 2)");
 		g.DFS(2);
+		System.out.println();
+		System.out.println("Following is deapth First Traversal with STACK DS " + "(starting from vertex 2)");
+		g.DFSWithStack(2);
 	}
 }
