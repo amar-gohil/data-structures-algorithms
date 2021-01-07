@@ -50,9 +50,41 @@ public class TwoElementsWhoseSumClosestToZero {
 				+ arr[minR]);
 	}
 
+	//
+	static void minAbsSumPairWithN2(int arr[], int n) {
+		if (n < 2)
+			return;
+		for (int i = 1; i < n; i++) {
+			if (Math.abs(arr[i - 1]) > Math.abs(arr[i])) {
+				int temp = arr[i - 1];
+				arr[i - 1] = arr[i];
+				arr[i] = temp;
+			}
+		}
+		int min = 9999999;
+		int x = 0;
+		int y = 0;
+		// current array  1, -10, 60 , -85 , 70, 85
+		for (int i = 1; i < n; i++) {
+
+			// Absolute value shows how close
+			// it is to zero
+			if (Math.abs(arr[i - 1] + arr[i]) <= min) {
+
+				// If found an even close value
+				// update min and store the index
+				min = Math.abs(arr[i - 1] + arr[i]);
+				x = i - 1;
+				y = i;
+			}
+		}
+		System.out.println("The two elements whose sum is minimum are " + arr[x] + " and " + arr[y]);
+	}
+
 	public static void main(String[] args) {
 		int arr[] = { 1, 60, -10, 70, -80, 85 };
 		minAbsSumPairWithTwoLoop(arr, arr.length);
 		minAbsSumPairWithSortArray(arr, arr.length);
+		minAbsSumPairWithN2(arr, arr.length);
 	}
 }
