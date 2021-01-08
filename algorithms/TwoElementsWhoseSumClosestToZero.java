@@ -50,7 +50,7 @@ public class TwoElementsWhoseSumClosestToZero {
 				+ arr[minR]);
 	}
 
-	//
+	// Not working with int arr1[] = {-80,-34, -9,1,7,35 };
 	static void minAbsSumPairWithN2(int arr[], int n) {
 		if (n < 2)
 			return;
