@@ -69,8 +69,7 @@ public class IntersectionPointOfTwoLinkedLists {
 		return count;
 	}
 
-	// list.list2.next = list.list1.next.next.next; for 15 list2 assign list one
-	// node
+	// crate loop in one list and start with second list 
 	static Node getIntersectionPointMethod3(Node list1, Node list2) {
 		Node temp1 = list1;
 		while (temp1.next != null) {
