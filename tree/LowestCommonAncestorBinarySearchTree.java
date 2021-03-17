@@ -1,8 +1,17 @@
 package com.datastructure.tree;
 
 public class LowestCommonAncestorBinarySearchTree {
-
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    TreeNode lowestCommonAncestorWithRecursive(TreeNode node, int n1, int n2)
+    {
+        if (node == null)
+            return null;
+        if (node.val > n1 && node.val > n2)
+            return lowestCommonAncestorWithRecursive(node.left, n1, n2);
+        if (node.val < n1 && node.val < n2)
+            return lowestCommonAncestorWithRecursive(node.right, n1, n2);
+        return node;
+    }
+    TreeNode lowestCommonAncestorWithWhile(TreeNode root, TreeNode p, TreeNode q) {
         while (root != null) {
             if (root.val > p.val &&
                     root.val > q.val)
@@ -26,7 +35,7 @@ public class LowestCommonAncestorBinarySearchTree {
         head.right.left = new TreeNode(7);
         head.right.right = new TreeNode(9);
         LowestCommonAncestorBinarySearchTree l = new LowestCommonAncestorBinarySearchTree();
-        l.lowestCommonAncestor(head, head.left.left, head.left.right.right);
+        l.lowestCommonAncestorWithWhile(head, head.left.left, head.left.right.right);
     }
 
     static class TreeNode {
