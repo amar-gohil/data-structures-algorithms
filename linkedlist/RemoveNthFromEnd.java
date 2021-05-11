@@ -1,12 +1,5 @@
-package com.com.datastructure.linkedlist;
+package com.datastructure.linkedlist;
 
-class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-}
 public class RemoveNthFromEnd {
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode start = new ListNode(0);
